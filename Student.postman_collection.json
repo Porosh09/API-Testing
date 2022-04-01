@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "4c79a296-7698-42ba-b483-f288613eb03a",
+		"name": "Student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/studentsDetails",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check first name\", function () {\r",
+							"    pm.expect(jsonData.first_name).to.eql(\"Fuad\");\r",
+							"});\r",
+							"pm.test(\"check middle name\", function () {\r",
+							"    pm.expect(jsonData.middle_name).to.eql(\"Al\");\r",
+							"});\r",
+							"pm.test(\"check last name\", function () {\r",
+							"    pm.expect(jsonData.last_name).to.eql(\"Parvez\");\r",
+							"});\r",
+							"pm.test(\"check date of birth\", function () {\r",
+							"    pm.expect(jsonData.date_of_birth).to.eql(\"9/10/1997\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"first_name\": \"Fuad\",\r\n \"middle_name\": \"Al\",\r\n \"last_name\": \"Parvez\",\r\n \"date_of_birth\": \"9/10/1997\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/studentsDetails",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"first_name\": \"Fuad\",\r\n \"middle_name\": \"Al\",\r\n \"last_name\": \"Porosh\",\r\n \"date_of_birth\": \"8/10/1995\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/studentsDetails/1097409",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1097409"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check first name\", function () {\r",
+							"    pm.expect(jsonData.data.first_name).to.eql(\"Fuad\");\r",
+							"});\r",
+							"pm.test(\"check middle name\", function () {\r",
+							"    pm.expect(jsonData.data.middle_name).to.eql(\"Al\");\r",
+							"});\r",
+							"pm.test(\"check last name\", function () {\r",
+							"    pm.expect(jsonData.data.last_name).to.eql(\"Parvez\");\r",
+							"});\r",
+							"pm.test(\"check date of birth\", function () {\r",
+							"    pm.expect(jsonData.data.date_of_birth).to.eql(\"9/10/1997\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/studentsDetails/1097432",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1097432"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Status\", function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"true\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check msg\", function () {\r",
+							"    pm.expect(jsonData.msg).to.eql(\"Add  data success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"Permanent_Address\": {\r\n \"House_Number\": \"a4\",\r\n \"City\": \"dhaka\",\r\n \"State\": \"dhaka\",\r\n \"Country\": \"bangladesh\",\r\n \"PhoneNumber\": [\r\n {\r\n \"Std_Code\": \"+880\",\r\n \"Home\": \"dhaka\",\r\n \"Mobile\": \"01303070781\"\r\n },\r\n {\r\n \"Std_Code\": \"+880\",\r\n \"Home\": \"dhaka\",\r\n \"Mobile\": \"01521428851\"\r\n }\r\n ]\r\n },\r\n \"stId\": 1097432\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/addresses",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Final",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check House Number\", function () {\r",
+							"    pm.expect(jsonData.data.Address[0].Permanent_Address.House_Number).to.eql(\"a4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check City\", function () {\r",
+							"    pm.expect(jsonData.data.Address[0].Permanent_Address.City).to.eql(\"dhaka\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Country\", function () {\r",
+							"    pm.expect(jsonData.data.Address[0].Permanent_Address.Country).to.eql(\"bangladesh\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Country\", function () {\r",
+							"    pm.expect(jsonData.data.Address[0].Permanent_Address.PhoneNumber[0].Mobile).to.eql(\"01303070781\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/FinalStudentDetails/1097432",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"FinalStudentDetails",
+						"1097432"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/studentsDetails/1097585\n",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"studentsDetails",
+						"1097585\n"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
